@@ -2,24 +2,18 @@ package ru.javarush.konovalov.models;
 
 
 public class GameObject {
-    private int x;
-    private int y;
 
-    public int getX() {
-        return x;
+    private Coordinate coordinate;
+
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
-    public int getY() {
-        return y;
-    }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 }
 
 

@@ -1,6 +1,7 @@
 package ru.javarush.konovalov.models;
 
 import ru.javarush.konovalov.models.Animal;
+import ru.javarush.konovalov.models.herbivores.Hare;
 import ru.javarush.konovalov.models.predators.Wolf;
 
 import java.util.ArrayList;
@@ -19,7 +20,13 @@ public class Location {
     public Location(Coordinate coordinate, int number) {
         this.coordinate = coordinate;
         animalsMap.put(Wolf.class, new ArrayList<>() {{
-            add(new Wolf(30, number, 8, 8));
+            add(new Wolf(30, number, 8, 8, coordinate));
+            add(new Wolf(30, number+1, 8, 8, coordinate));
+        }});
+
+        animalsMap.put(Hare.class, new ArrayList<>() {{
+            add(new Hare(30, number, 8, 8, coordinate));
+            add(new Hare(30, number+1, 8, 8, coordinate));
         }});
     }
 
