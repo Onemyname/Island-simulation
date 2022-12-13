@@ -1,4 +1,4 @@
-package ru.javarush.konovalov.animals;
+package ru.javarush.konovalov.models;
 
 
 public class GameObject {

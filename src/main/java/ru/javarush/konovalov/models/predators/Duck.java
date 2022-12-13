@@ -1,6 +1,9 @@
-package ru.javarush.konovalov.animals;
+package ru.javarush.konovalov.models.predators;
 
-public class Duck extends Animal implements Herbivore, Predatory{
+import ru.javarush.konovalov.models.Animal;
+import ru.javarush.konovalov.models.Plant;
+
+public class Duck extends Animal {
 
     public Duck(int weight, int speed, double maxSatiety, double currentSatiety) {
         super(weight, speed, maxSatiety, currentSatiety);

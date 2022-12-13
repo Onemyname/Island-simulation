@@ -1,6 +1,9 @@
-package ru.javarush.konovalov.animals;
+package ru.javarush.konovalov.models.herbivores;
 
-public class Hare extends Animal implements Herbivore{
+import ru.javarush.konovalov.models.Animal;
+import ru.javarush.konovalov.models.Plant;
+
+public class Hare extends Animal {
     public Hare(int weight, int speed, double maxSatiety, double currentSatiety) {
         super(weight, speed, maxSatiety, currentSatiety);
     }
