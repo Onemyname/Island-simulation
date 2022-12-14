@@ -4,7 +4,7 @@ import ru.javarush.konovalov.models.Animal;
 import ru.javarush.konovalov.models.Coordinate;
 import ru.javarush.konovalov.models.Plant;
 
-public class Duck extends Animal {
+public class Duck extends CarnivoreAnimal implements Predator  {
 
     public Duck(int weight, int speed, double maxSatiety, double currentSatiety, Coordinate coordinate) {
         super(weight, speed, maxSatiety, currentSatiety, coordinate);

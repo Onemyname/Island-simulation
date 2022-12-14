@@ -4,16 +4,19 @@ import ru.javarush.konovalov.models.Coordinate;
 import ru.javarush.konovalov.repositories.IslandRepository;
 import ru.javarush.konovalov.models.Location;
 import ru.javarush.konovalov.models.Animal;
+import ru.javarush.konovalov.services.AnimalService;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * Hello world!
- */
 public class App {
     public static void main(String[] args) throws ClassNotFoundException {
         IslandRepository island = new IslandRepository(2, 2);
+        AnimalService animalService = new AnimalService(island);
+
+
+
+
 
         System.out.println(island.getLocation(new Coordinate(0,1)));
         System.out.println(island.getLocation(new Coordinate(1,1)));
@@ -21,6 +24,7 @@ public class App {
 
         island.getAnimalsInLocation(new Coordinate(0, 1)).forEach((key, value) -> System.out.println(value));
         island.getAnimalsInLocation(new Coordinate(1, 1)).forEach((key, value) -> System.out.println(value));
+
 
 //        System.out.println(island.getIslandMap().entrySet());
 //        System.out.println(island.getIslandMap().values());

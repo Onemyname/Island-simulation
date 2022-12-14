@@ -16,6 +16,6 @@ public abstract class Animal extends GameObject {
     private int weight;
     private int speed;
     private double maxSatiety;
-    private double currentSatiety;
+    private double currentSatiety; // todo !> maxSatiety
     private Coordinate coordinate;
 }

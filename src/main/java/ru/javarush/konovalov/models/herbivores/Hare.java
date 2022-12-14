@@ -4,7 +4,7 @@ import ru.javarush.konovalov.models.Animal;
 import ru.javarush.konovalov.models.Coordinate;
 import ru.javarush.konovalov.models.Plant;
 
-public class Hare extends Animal {
+public class Hare extends HerbivoreAnimal {
     public Hare(int weight, int speed, double maxSatiety, double currentSatiety, Coordinate coordinate) {
         super(weight, speed, maxSatiety, currentSatiety, coordinate);
     }

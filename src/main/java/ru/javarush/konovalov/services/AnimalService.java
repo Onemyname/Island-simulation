@@ -1,33 +1,82 @@
 package ru.javarush.konovalov.services;
 
 import ru.javarush.konovalov.models.Animal;
+import ru.javarush.konovalov.models.Coordinate;
+import ru.javarush.konovalov.models.Location;
 import ru.javarush.konovalov.models.herbivores.Hare;
+import ru.javarush.konovalov.models.herbivores.HerbivoreAnimal;
+import ru.javarush.konovalov.models.predators.*;
+import ru.javarush.konovalov.repositories.IslandRepository;
 
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalService {
+    private final Map<Class<? extends Animal>, Map<Class<? extends Animal>, Double>> globalRation
+            = new HashMap<>() {{
+        put(Wolf.class, new HashMap<>() {{
+            put(Hare.class, 0.9);
+            put(Duck.class, 0.8);
+        }});
+        put(Python.class, new HashMap<>() {{
+            put(Hare.class, 0.4);
+            put(Duck.class, 0.2);
+        }});
+    }};
 
-    public void eat(){
-//        if(){
-//
-//        }
-//        else{
-//
-//        }
+
+    private final IslandRepository islandRepository;
+
+    public AnimalService(IslandRepository islandRepository) {
+        this.islandRepository = islandRepository;
     }
 
-    private void eatAnimal(Animal prey, List<Animal> ration){
-        if(prey instanceof Hare){
-            System.out.println("волк сожрал зайца");
+    public void eat(Animal hungryAnimal) {
+        Coordinate currentCoordinate = hungryAnimal.getCoordinate();
+        Location location = islandRepository.getLocation(currentCoordinate);
+
+        if (hungryAnimal instanceof HerbivoreAnimal) {
+            eatPlant(hungryAnimal,location);
+        } else if (hungryAnimal instanceof Predator) {
+            eatAnimal(hungryAnimal, location);
         }
+
     }
+        private void eatAnimal (Animal hungryAnimal, Location location) { // todo put parameters
+            Map<Class<? extends Animal>, List<Animal>> animalsInLocation = location.getAnimalsMap();
+            Map<Class<? extends Animal>, Double> rationPercentage = globalRation.get(hungryAnimal.getClass());
 
-    public List<Animal> getRation(Animal animal){
+            if (rationPercentage.isEmpty()) {
+                return;
+            }
 
-        return null;
-    }
+            for (Map.Entry<Class<? extends Animal>, Double> preyClass : rationPercentage.entrySet()) {
 
-    private void eatPlant(){
+                if (animalsInLocation.isEmpty() || preyClass == null) {
+                    return;
+                }
+
+                List<Animal> preys = animalsInLocation.getOrDefault(preyClass, new ArrayList<>());   // todo предусмотреть NullPointerException
+
+
+                if (!preys.isEmpty()) {
+                    Animal prey = preys.get(0);                                  // todo добавить рандом на выбор жертвы
+
+                    boolean isKilled = Math.random() < preyClass.getValue();          // todo вызвать метод рандомайзера
+                    //   isKilled = 0.56 < 0.9
+                    if (isKilled) {
+                        hungryAnimal.setCurrentSatiety(prey.getWeight());
+
+                        // todo как накормить волка, удалить зайца
+                        return;
+                    }
+                    // todo волк пропускает ход
+                    return;
+                }
+            }
+        }
+
+    private void eatPlant(Animal hungryAnimal, Location location) {
 
     }
 }

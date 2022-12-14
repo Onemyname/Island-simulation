@@ -3,7 +3,7 @@ package ru.javarush.konovalov.models.predators;
 import ru.javarush.konovalov.models.Animal;
 import ru.javarush.konovalov.models.Coordinate;
 
-public class Wolf extends Animal {
+public class Wolf extends CarnivoreAnimal implements Predator {
 
     public Wolf(int weight, int speed, double maxSatiety, double currentSatiety, Coordinate coordinate) {
         super(weight, speed, maxSatiety, currentSatiety, coordinate);

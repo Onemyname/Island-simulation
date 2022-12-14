@@ -27,7 +27,7 @@ public class IslandRepository {
 
     public Location getLocation(Coordinate coordinate){
 
-        return getIslandMap().get(coordinate);
+        return getIslandMap().get(coordinate);                      // может быть null
     }
 
     public Map<Class<? extends Animal>, List<Animal>> getAnimalsInLocation(Coordinate coordinate){
